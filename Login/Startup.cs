@@ -29,6 +29,10 @@ namespace Login
             services.AddRazorPages();
             services.AddDbContext<AuthDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("constr")));
             services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AuthDbContext>();
+            services.ConfigureApplicationCookie(config =>
+                {
+                    config.LoginPath = "/Login";
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
